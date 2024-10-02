@@ -49,10 +49,10 @@ async function handleRequest(request) {
             }
         )
     };
-    // 使用URL对象构建实际URL
-    const actualUrl = new URL(url.pathname.slice(1) + url.search + url.hash, url.origin); 
+    const actualUrlStr = url.pathname.replace("/", "") + url.search + url.hash;
+    const actualUrl = new URL(actualUrlStr);
     const modifiedRequest = new Request(
-        actualUrl.href, {
+        actualUrl, {
             headers: request.headers,
             method: request.method,
             body: request.body,
