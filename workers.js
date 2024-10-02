@@ -66,4 +66,3 @@ async function handleRequest(request) {
     modifiedResponse.headers.set('Cache-Control', 'public, max-age=10'); // 根据需要调整 max-age
     return modifiedResponse;
 }
-
