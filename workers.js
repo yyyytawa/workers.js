@@ -49,10 +49,10 @@ async function handleRequest(request) {
             }
         )
     };
-    const actualUrlStr = url.pathname.replace("/", "") + url.search + url.hash;
-    const actualUrl = new URL(actualUrlStr);
+    // 使用URL对象构建实际URL
+    const actualUrl = new URL(url.pathname.slice(1) + url.search + url.hash, url.origin); 
     const modifiedRequest = new Request(
-        actualUrl, {
+        actualUrl.href, {
             headers: request.headers,
             method: request.method,
             body: request.body,
@@ -66,3 +66,4 @@ async function handleRequest(request) {
     modifiedResponse.headers.set('Cache-Control', 'public, max-age=10'); // 根据需要调整 max-age
     return modifiedResponse;
 }
+
